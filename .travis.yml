@@ -1,7 +1,9 @@
 language: bash
+
 script:
   - git clone github.com:sh19910711/my-repo-1.wiki /tmp/wiki
-  - git push /tmp/wiki master -f
+  - git branch
+  - git push /tmp/wiki master:next
   - cd /tmp/wiki
   - git commit -m "wip: $(date +\"%s\")"
-  - git push origin master -f
+  - git push origin next:master -f

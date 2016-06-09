@@ -1,0 +1,4 @@
+language: bash
+script:
+  - git clone github.com:sh19910711/my-repo-1.wiki
+  - ls -lha

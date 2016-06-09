@@ -1,9 +1,10 @@
 language: bash
 
 script:
+  - export REPO=$PWD
+  - git log --oneline
   - git clone github.com:sh19910711/my-repo-1.wiki /tmp/wiki
-  - git branch
-  - git push /tmp/wiki master:next
   - cd /tmp/wiki
+  - git fetch $REPO
   - git commit -m "wip: $(date +\"%s\")"
   - git push origin next:master -f

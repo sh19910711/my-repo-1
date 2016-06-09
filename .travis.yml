@@ -1,11 +1,4 @@
 language: bash
 
 script:
-  - export REPO=$PWD
-  - git log --oneline
-  - git clone github.com:sh19910711/my-repo-1.wiki /tmp/wiki
-  - cd /tmp/wiki
-  - git remote add repo $REPO
-  - git fetch repo
-  - git reset --hard repo/$TRAVIS_BRANCH
-  - git push origin master -f
+  - git push github.com:sh19910711/my-repo-1.wiki $TRAVIS_BRANCH -f

@@ -5,6 +5,7 @@ script:
   - git log --oneline
   - git clone github.com:sh19910711/my-repo-1.wiki /tmp/wiki
   - cd /tmp/wiki
-  - git fetch $REPO
-  - git commit -m "wip: $(date +\"%s\")"
-  - git push origin next:master -f
+  - git remote add repo $REPO
+  - git fetch repo
+  - git reset --hard repo/HEAD
+  - git push origin master -f

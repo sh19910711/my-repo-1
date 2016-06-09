@@ -1,4 +1,2 @@
 language: bash
-
-script:
-  - git push github.com:sh19910711/my-repo-1.wiki $TRAVIS_BRANCH -f
+script: git push github.com:$TRAVIS_REPO_SLUG.wiki $TRAVIS_BRANCH:master -f

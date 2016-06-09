@@ -7,5 +7,5 @@ script:
   - cd /tmp/wiki
   - git remote add repo $REPO
   - git fetch repo
-  - git reset --hard repo/HEAD
+  - git reset --hard repo/$TRAVIS_BRANCH
   - git push origin master -f

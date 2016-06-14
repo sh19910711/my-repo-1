@@ -1,15 +1,13 @@
 language: bash
 
 script:
-  # git-pull用の設定
-  - git config --global user.email "you@example.com"
-  - git config --global user.name "Your Name"
+  # Wikiから既存の変更を取り込む
+  - GIT_AUTHOR_NAME="me" \
+    GIT_AUTHOR_EMAIL="me@example.com" \
+    git pull --rebase $WIKI_REPO master
 
-  # Wikiの最新版に追従しておく
-  - git pull --rebase $WIKI_REPO master
-
-  # Wikiに変更を反映する
-  - git push $WIKI_REPO $TRAVIS_BRANCH:master -f
+  # Wikiに新しい変更を反映する
+  - git push $WIKI_REPO $TRAVIS_BRANCH:master
 
   # リポジトリのwikiブランチに同期しておく
   - git push $CODE_REPO $TRAVIS_BRANCH:wiki

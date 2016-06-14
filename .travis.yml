@@ -10,15 +10,15 @@ env:
     WIKI_REPO=github.com:$TRAVIS_REPO_SLUG.wiki
 
 script:
-  - git config --global user.email "$(git show -s --format='%an' HEAD)" &&
-    git config --global user.name "$(git show -s --format='%ae' HEAD)"
+  - git config --global user.email "$(git show -s --format='%an')" &&
+    git config --global user.name "$(git show -s --format='%ae')"
 
-  # 1. wiki-repoから既存の変更を取り込む（衝突した場合はビルド失敗）
+  # 1. $WIKI_REPOから既存の変更を取り込む（衝突した場合はビルド失敗）
   - git pull --rebase $WIKI_REPO master || exit 1
 
-  # 2. wiki-repoに新しい変更を反映し、
-  # 3. code-repoのwiki用ブランチに変更を同期する（force push）
+  # 2. $WIKI_REPOに新しい変更を反映し、
+  # 3. $CODE_REPOのwiki用ブランチに変更を同期する（force push）
   - if [[ "$TRAVIS_BRANCH" == "wiki/master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-      git push wiki_repo HEAD:master;
-      git push --force code-repo HEAD:wiki/master;
+      git push $WIKI_REPO HEAD:master;
+      git push --force $CODE_REPO HEAD:wiki/master;
     fi

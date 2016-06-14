@@ -6,13 +6,11 @@ script:
     git config --global user.name "Your Name" &&
     git pull --rebase $WIKI_REPO master
 
-  - git branch
-
   # Wikiに新しい変更を反映する
-  - git push $WIKI_REPO $TRAVIS_BRANCH:master
+  - git push $WIKI_REPO HEAD:master
 
   # リポジトリのwikiブランチに同期しておく
-  - git push $CODE_REPO $TRAVIS_BRANCH:wiki
+  - git push $CODE_REPO HEAD:wiki
 
 env:
   global:

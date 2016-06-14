@@ -10,11 +10,10 @@ env:
     WIKI_REPO=github.com:$TRAVIS_REPO_SLUG.wiki
 
 script:
+  - git remote add wiki-repo $WIKI_REPO
+
   # 1. WIKI_REPOから既存の変更を取り込む（衝突した場合はビルド失敗）
-  - git config --global user.email "you@example.com" &&
-    git config --global user.name "Your Name" &&
-    git pull $WIKI_REPO master ||
-    exit 1
+  - git rebase wiki-repo/master || exit 1
 
   # 2. WIKI_REPOに新しい変更を反映し、
   # 3. CODE_REPOのwiki用ブランチに変更を同期する（force push）

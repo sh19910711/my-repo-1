@@ -15,7 +15,7 @@ script:
 
   # 1. WIKI_REPOから既存の変更を取り込む（衝突した場合はビルド失敗）
   - git remote add wiki-repo $WIKI_REPO &&
-    git fetch wiki-repo master
+    git fetch wiki-repo master &&
     git rebase wiki-repo/master || exit 1
 
   # 2. WIKI_REPOに新しい変更を反映し、

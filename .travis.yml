@@ -10,10 +10,10 @@ env:
     WIKI_REPO=github.com:$TRAVIS_REPO_SLUG.wiki
 
 script:
-  # 1. WIKI_REPOから既存の変更を取り込む（衝突した場合は強制終了）
+  # 1. WIKI_REPOから既存の変更を取り込む（衝突した場合はビルド失敗）
   - git config --global user.email "you@example.com" &&
     git config --global user.name "Your Name" &&
-    git pull --rebase $WIKI_REPO master ||
+    git pull --ff-only $WIKI_REPO master ||
     exit 1
 
   # 2. WIKI_REPOに新しい変更を反映し、
@@ -22,4 +22,3 @@ script:
       git push $WIKI_REPO HEAD:master;
       git push --force $CODE_REPO HEAD:wiki/master;
     fi
-

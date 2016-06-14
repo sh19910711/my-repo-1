@@ -1,7 +1,7 @@
 language: bash
 script:
-  - git pull --rebase $WIKI_REPO
+  - git pull --rebase $WIKI_REPO master
   - git push $WIKI_REPO $TRAVIS_BRANCH:master -f
 env:
   global:
-    WIKI_REPO=$TRAVIS_REPO_SLUG.wiki
+    WIKI_REPO=github.com:$TRAVIS_REPO_SLUG.wiki

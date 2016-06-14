@@ -1,9 +1,20 @@
 language: bash
+
 script:
+  # git-pull用の設定
   - git config --global user.email "you@example.com"
   - git config --global user.name "Your Name"
+
+  # Wikiの最新版に追従しておく
   - git pull --rebase $WIKI_REPO master
+
+  # Wikiに変更を反映する
   - git push $WIKI_REPO $TRAVIS_BRANCH:master -f
+
+  # リポジトリのwikiブランチに同期しておく
+  - git push $CODE_REPO $TRAVIS_BRANCH:wiki
+
 env:
   global:
+    CODE_REPO=github.com:$TRAVIS_REPO_SLUG
     WIKI_REPO=github.com:$TRAVIS_REPO_SLUG.wiki

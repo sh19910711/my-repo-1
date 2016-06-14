@@ -9,8 +9,8 @@ script:
   # Wikiに新しい変更を反映する
   - git push $WIKI_REPO HEAD:master
 
-  # リポジトリのwikiブランチに同期しておく
-  - git push $CODE_REPO HEAD:wiki
+  # リポジトリのwikiブランチに同期しておく（force push）
+  - git push --force $CODE_REPO HEAD:wiki
 
 env:
   global:

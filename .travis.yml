@@ -10,13 +10,11 @@ env:
     WIKI_REPO=github.com:$TRAVIS_REPO_SLUG.wiki
 
 script:
-  - git show -s --format='%an' HEAD
-  - git show -s --format='%ae' HEAD
   - git config --global user.email "$(git show -s --format='%an' HEAD)" &&
     git config --global user.name "$(git show -s --format='%ae' HEAD)"
 
   # 1. wiki-repoから既存の変更を取り込む（衝突した場合はビルド失敗）
-  - git pull --rebase wiki-repo master || exit 1
+  - git pull --rebase $WIKI_REPO master || exit 1
 
   # 2. wiki-repoに新しい変更を反映し、
   # 3. code-repoのwiki用ブランチに変更を同期する（force push）

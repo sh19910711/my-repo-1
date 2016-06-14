@@ -16,6 +16,6 @@ script:
   # 2. wiki-repoに新しい変更を反映し、
   # 3. code-repoのwiki用ブランチに変更を同期する（force push）
   - if [[ "$TRAVIS_BRANCH" == "wiki/master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-      git push wiki_repo HEAD:master;
+      git push wiki-repo HEAD:master;
       git push --force code-repo HEAD:wiki/master;
     fi

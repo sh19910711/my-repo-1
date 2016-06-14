@@ -15,8 +15,10 @@ script:
 
   # 1. WIKI_REPOから既存の変更を取り込む（衝突した場合はビルド失敗）
   - git remote add wiki-repo $WIKI_REPO &&
+    git remote add code-repo $CODE_REPO &&
     git fetch wiki-repo master &&
-    git rebase --onto wiki-repo/master wiki/master HEAD || exit 1
+    git fetch code-repo wiki/master &&
+    git rebase --onto wiki-repo/master code-repo/wiki/master HEAD || exit 1
 
   # 2. WIKI_REPOに新しい変更を反映し、
   # 3. CODE_REPOのwiki用ブランチに変更を同期する（force push）

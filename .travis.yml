@@ -2,9 +2,7 @@ language: bash
 
 script:
   # Wikiから既存の変更を取り込む
-  - GIT_AUTHOR_NAME="me" \
-    GIT_AUTHOR_EMAIL="me@example.com" \
-    git pull --rebase $WIKI_REPO master
+  - GIT_AUTHOR_NAME="me" GIT_AUTHOR_EMAIL="me@example.com" git pull --rebase $WIKI_REPO master
 
   # Wikiに新しい変更を反映する
   - git push $WIKI_REPO $TRAVIS_BRANCH:master
